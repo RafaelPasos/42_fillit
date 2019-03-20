@@ -6,19 +6,19 @@
 /*   By: apasos-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 23:50:32 by apasos-g          #+#    #+#             */
-/*   Updated: 2019/03/12 02:33:34 by raramos          ###   ########.fr       */
+/*   Updated: 2019/03/19 22:01:52 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	ft_lst_add_tail(t_tetrimino **lst, short ntetri)
+void	ft_lst_add_tail(t_tetrimino **lst, char *** ntetri)
 {
 	t_tetrimino	*temp;
 	t_tetrimino	*new_tetri;
 
 	new_tetri = (t_tetrimino *)malloc(sizeof(t_tetrimino));
-	new_tetri->map = ntetri;
+	new_tetri->shape = *ntetri;
 	new_tetri->next = NULL;
 	if (!(*lst))
 	{

@@ -6,18 +6,29 @@
 /*   By: apasos-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 23:19:00 by apasos-g          #+#    #+#             */
-/*   Updated: 2019/03/18 23:33:36 by apasos-g         ###   ########.fr       */
+/*   Updated: 2019/03/20 00:08:56 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	print_tetr(unsigned short t)
+void	print_tetr(char ***tetri)
 {
 	int i;
+	int j;
 
-	i = 65536;
-	while (i >>= 1)
-		(t & i) ? ft_putchar('1') : ft_putchar('0');
+	i = 0;
+	j = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while(j < 4)
+		{
+			write(1, &((*tetri)[i][j]), 1);
+			j++;
+		}
+		write(1, "\n", 1);
+		i++;
+	}
 	write(1, "\n", 1);
 }

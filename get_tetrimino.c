@@ -6,7 +6,7 @@
 /*   By: raramos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 02:55:49 by raramos           #+#    #+#             */
-/*   Updated: 2019/03/12 20:46:08 by apasos-g         ###   ########.fr       */
+/*   Updated: 2019/03/19 22:01:12 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		charvalidator(char ***tetri)
 	return (1);
 }
 
-int		tetrivalue(char ***tetri, unsigned short *tetrimin)
+int		tetrivalue(char ***tetri)
 {
 	unsigned short	value;
 	unsigned short	base;
@@ -63,7 +63,6 @@ int		tetrivalue(char ***tetri, unsigned short *tetrimin)
 	}
 	if (!(tetri_validator(value)))
 		return (-1);
-	*tetrimin = value;
 	return (1);
 }
 
@@ -113,7 +112,7 @@ int		check_new_line(int fd, char **line, t_tetrimino **lst, int tetri)
 	return (1);
 }
 
-int		get_tetrimino(int fd, unsigned short *tetrimin, t_tetrimino **lst)
+int		get_tetrimino(int fd, char ***tetrimin, t_tetrimino **lst)
 {
 	int		tetri;
 	char	**tetrivalid;
@@ -128,10 +127,13 @@ int		get_tetrimino(int fd, unsigned short *tetrimin, t_tetrimino **lst)
 	tetrivalid[4] = NULL;
 	tetri = readfromfile(fd, &tetrivalid, tetri);
 	if (tetri == -1 || tetri == 0)
+		return (tetri);
+	tetri = tetrivalue(&tetrivalid);
+	if (tetri != 1)
 	{
+		ft_free2darray(&tetrivalid, 4);
 		return (tetri);
 	}
-	tetri = tetrivalue(&tetrivalid, tetrimin);
-	ft_free2darray(&tetrivalid, 4);
+	*tetrimin = tetrivalid;
 	return (tetri);
 }
