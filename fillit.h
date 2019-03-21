@@ -6,7 +6,7 @@
 /*   By: apasos-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 21:21:48 by apasos-g          #+#    #+#             */
-/*   Updated: 2019/03/20 00:09:06 by apasos-g         ###   ########.fr       */
+/*   Updated: 2019/03/20 01:17:38 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ void				ft_lst_add_tail(t_tetrimino **lst, char ***ntetri);
 t_tetrimino			*ft_remove_lst_head(t_tetrimino **lst);
 void				ft_empty_lst(t_tetrimino **lst);
 void				print_tetr(char ***tetri);
+int					ft_count_tetris(t_tetrimino **lst);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: apasos-g <apasos-g@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/12 19:58:06 by apasos-g          #+#    #+#              #
-#    Updated: 2019/03/20 00:08:03 by apasos-g         ###   ########.fr        #
+#    Updated: 2019/03/20 01:16:33 by apasos-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SOURCES =	get_tetrimino.c\
 			ft_remove_lst_head.c\
 			ft_empty_lst.c\
 			print.c\
+			ft_count_tetris.c\
 			parser.c
 
 OBJECT = $(SOURCES:.c=.o)

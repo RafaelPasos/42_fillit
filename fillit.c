@@ -6,7 +6,7 @@
 /*   By: apasos-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 21:57:57 by apasos-g          #+#    #+#             */
-/*   Updated: 2019/03/20 00:14:08 by apasos-g         ###   ########.fr       */
+/*   Updated: 2019/03/20 01:32:50 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,13 @@ int	main(int argc, char **argv)
 		lst = parser(argv[i]);
 		if (lst != NULL)
 		{
+			/*
 			while ((print = ft_remove_lst_head(&lst)))
 			{
 				print_tetr(&(print->shape));
 			}
+			*/
+			//printf("%d tetriminos in dis file\n", ft_count_tetris(&lst));
 			printf("File %d: OK\n", i);
 		}
 		else
