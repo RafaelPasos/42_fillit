@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solver.c                                           :+:      :+:    :+:   */
+/*   grid_size.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apasos-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/18 21:00:14 by apasos-g          #+#    #+#             */
-/*   Updated: 2019/03/20 19:21:04 by apasos-g         ###   ########.fr       */
+/*   Created: 2019/03/21 03:46:06 by apasos-g          #+#    #+#             */
+/*   Updated: 2019/03/21 03:46:10 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,4 @@ int grid_size(t_tetrimino **lst)
 	}
 	else
 		return (get_max_size(&(*lst->size));
-}
-
-int solver(t_tetrimino **lst)
-{
-	int size;
-
-	size = grid_size(ft_count_tetri(lst));
-	return (1);
 }
