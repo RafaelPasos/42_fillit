@@ -1,34 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.c                                            :+:      :+:    :+:   */
+/*   grid_builder.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apasos-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/18 23:19:00 by apasos-g          #+#    #+#             */
-/*   Updated: 2019/03/21 17:23:46 by apasos-g         ###   ########.fr       */
+/*   Created: 2019/03/21 06:27:45 by apasos-g          #+#    #+#             */
+/*   Updated: 2019/03/23 16:15:31 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	print_tetr(char ***tetri, int size)
+char	**grid_builder(int size)
 {
-	int i;
-	int j;
+	char	**grid;
+	int		i;
+	int		k;
 
 	i = 0;
-	j = 0;
+	if (!(grid = (char **)malloc(sizeof(char *) * (size + 1))))
+		return (NULL);
 	while (i < size)
 	{
-		j = 0;
-		while(j < size)
+		if (!(grid[i] = (char *)malloc(sizeof(char) * (size + 1))))
 		{
-			write(1, &((*tetri)[i][j]), 1);
-			j++;
+			ft_free2darray(&grid, i);
+			return (NULL);
 		}
-		write(1, "\n", 1);
+		k = 0;
+		while (k < size)
+		{
+			grid[i][k] = '.';
+			k++;
+		}
+		grid[i][k] = '\0';
 		i++;
 	}
-	//write(1, "\n", 1);
+	grid[i] = NULL;
+	return (grid);
 }

@@ -6,7 +6,7 @@
 /*   By: apasos-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 21:13:03 by apasos-g          #+#    #+#             */
-/*   Updated: 2019/03/19 22:02:17 by apasos-g         ###   ########.fr       */
+/*   Updated: 2019/03/21 20:23:33 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@ t_tetrimino	*parser(char *filename)
 	int				fd;
 	int				status;
 	char			**tetrimin;
+	unsigned short	value;
 	t_tetrimino		*lst;
 
 	fd = open(filename, O_RDONLY);
 	lst = NULL;
-	while ((status = get_tetrimino(fd, &tetrimin, &lst)) != 0)
+	while ((status = get_tetrimino(fd, &tetrimin, &lst, &value)) != 0)
 	{
 		if (status == -1)
 		{
@@ -32,7 +33,7 @@ t_tetrimino	*parser(char *filename)
 			return (lst);
 		else
 		{
-			ft_lst_add_tail(&lst, &tetrimin);
+			ft_lst_add_tail(&lst, &tetrimin, value);
 		}
 	}
 	return (lst);

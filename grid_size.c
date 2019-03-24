@@ -6,7 +6,7 @@
 /*   By: apasos-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 03:46:06 by apasos-g          #+#    #+#             */
-/*   Updated: 2019/03/21 03:46:10 by apasos-g         ###   ########.fr       */
+/*   Updated: 2019/03/21 06:45:25 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int grid_size(t_tetrimino **lst)
 	int size1;
 	int size2;
 
-	count = ft_count_tetri(*lst);
+	count = ft_count_tetris(lst);
 	root = 0;
 	if (count > 2)
 	{
@@ -58,10 +58,10 @@ int grid_size(t_tetrimino **lst)
 	}
 	else if (count == 2)
 	{
-		size1 = get_max_size(&(*lst->shape))
-		size2 = get_max_size(&(*lst->next->shape));
+		size1 = get_max_size(&((*lst)->shape));
+		size2 = get_max_size(&((*lst)->next->shape));
 		return ((size1 > size2) ? size1 : size2);
 	}
 	else
-		return (get_max_size(&(*lst->size));
+		return (get_max_size(&((*lst)->shape)));
 }

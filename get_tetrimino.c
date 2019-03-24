@@ -6,7 +6,7 @@
 /*   By: raramos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 02:55:49 by raramos           #+#    #+#             */
-/*   Updated: 2019/03/19 22:01:12 by apasos-g         ###   ########.fr       */
+/*   Updated: 2019/03/23 19:31:22 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		charvalidator(char ***tetri)
 	return (1);
 }
 
-int		tetrivalue(char ***tetri)
+int		tetrivalue(char ***tetri, unsigned short *val)
 {
 	unsigned short	value;
 	unsigned short	base;
@@ -63,6 +63,7 @@ int		tetrivalue(char ***tetri)
 	}
 	if (!(tetri_validator(value)))
 		return (-1);
+	*val = value;
 	return (1);
 }
 
@@ -112,7 +113,8 @@ int		check_new_line(int fd, char **line, t_tetrimino **lst, int tetri)
 	return (1);
 }
 
-int		get_tetrimino(int fd, char ***tetrimin, t_tetrimino **lst)
+int		get_tetrimino(int fd, char ***tetrimin, t_tetrimino **lst, \
+		unsigned short *val)
 {
 	int		tetri;
 	char	**tetrivalid;
@@ -128,7 +130,7 @@ int		get_tetrimino(int fd, char ***tetrimin, t_tetrimino **lst)
 	tetri = readfromfile(fd, &tetrivalid, tetri);
 	if (tetri == -1 || tetri == 0)
 		return (tetri);
-	tetri = tetrivalue(&tetrivalid);
+	tetri = tetrivalue(&tetrivalid, val);
 	if (tetri != 1)
 	{
 		ft_free2darray(&tetrivalid, 4);
