@@ -6,13 +6,13 @@
 /*   By: raramos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 02:55:49 by raramos           #+#    #+#             */
-/*   Updated: 2019/03/24 22:29:38 by apasos-g         ###   ########.fr       */
+/*   Updated: 2019/03/24 22:50:04 by raramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		charvalidator(char ***tetri)
+int			charvalidator(char ***tetri)
 {
 	int		i;
 	int		j;
@@ -38,7 +38,7 @@ int		charvalidator(char ***tetri)
 	return (1);
 }
 
-int		tetrivalue(char ***tetri, unsigned short *val)
+int			tetrivalue(char ***tetri, unsigned short *val)
 {
 	unsigned short	value;
 	unsigned short	base;
@@ -67,7 +67,7 @@ int		tetrivalue(char ***tetri, unsigned short *val)
 	return (1);
 }
 
-int		readfromfile(int fd, char ***tetri, int readn)
+int			readfromfile(int fd, char ***tetri, int readn)
 {
 	int		i;
 
@@ -85,7 +85,7 @@ int		readfromfile(int fd, char ***tetri, int readn)
 	return (1);
 }
 
-int		check_new_line(int fd, char **line, t_tetrimino **lst, int tetri)
+int			check_new_line(int fd, char **line, t_tetrimino **lst, int tetri)
 {
 	tetri = get_next_line(fd, line);
 	if (tetri == 1 && ((ft_strcmp(*line, "") == 0 && *lst == NULL) || \

@@ -6,13 +6,13 @@
 /*   By: apasos-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 06:11:26 by apasos-g          #+#    #+#             */
-/*   Updated: 2019/03/23 22:00:38 by apasos-g         ###   ########.fr       */
+/*   Updated: 2019/03/24 22:47:44 by raramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int solvethis(t_tetrimino **lst, t_map map, int letter)
+int	solvethis(t_tetrimino **lst, t_map map, int letter)
 {
 	int	coords[2];
 	int x;

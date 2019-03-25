@@ -6,7 +6,7 @@
 /*   By: apasos-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 03:46:06 by apasos-g          #+#    #+#             */
-/*   Updated: 2019/03/21 06:45:25 by apasos-g         ###   ########.fr       */
+/*   Updated: 2019/03/24 22:57:05 by raramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	get_max_size(char ***tetri)
 	return (3);
 }
 
-int grid_size(t_tetrimino **lst)
+int	grid_size(t_tetrimino **lst)
 {
 	int root;
 	int count;
