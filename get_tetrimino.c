@@ -6,7 +6,7 @@
 /*   By: raramos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 02:55:49 by raramos           #+#    #+#             */
-/*   Updated: 2019/03/23 19:31:22 by apasos-g         ###   ########.fr       */
+/*   Updated: 2019/03/24 22:29:38 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ int		check_new_line(int fd, char **line, t_tetrimino **lst, int tetri)
 	return (1);
 }
 
+/*
 int		get_tetrimino(int fd, char ***tetrimin, t_tetrimino **lst, \
 		unsigned short *val)
 {
@@ -138,4 +139,32 @@ int		get_tetrimino(int fd, char ***tetrimin, t_tetrimino **lst, \
 	}
 	*tetrimin = tetrivalid;
 	return (tetri);
+}
+*/
+
+t_tetrimino	*get_tetrimino(int fd, t_tetrimino **lst, int *status)
+{
+	unsigned short	val;
+	t_tetrimino		*new_tetri;
+	char			**tetrimin;
+	char			*line;
+
+	*status = 0;
+	*status = check_new_line(fd, &line, lst, *status);
+	if (*status != 1)
+		return (NULL);
+	tetrimin = (char **)malloc(sizeof(char *) * 4);
+	tetrimin[0] = line;
+	*status = readfromfile(fd, &tetrimin, *status);
+	if (*status == -1 || *status == 0)
+		return (NULL);
+	*status = tetrivalue(&tetrimin, &val);
+	if (*status != 1)
+	{
+		ft_free2darray(&tetrimin, 4);
+		return (NULL);
+	}
+	new_tetri = new_tetrimino(&tetrimin, val);
+	ft_free2darray(&tetrimin, 4);
+	return (new_tetri);
 }

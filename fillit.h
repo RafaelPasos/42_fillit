@@ -6,7 +6,7 @@
 /*   By: apasos-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 21:21:48 by apasos-g          #+#    #+#             */
-/*   Updated: 2019/03/23 15:30:46 by apasos-g         ###   ########.fr       */
+/*   Updated: 2019/03/24 22:19:33 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ typedef struct		s_map
 	int				size;
 }					t_map;
 
-int					get_tetrimino(int fd, char ***tetrimin, \
-					t_tetrimino **lst, unsigned short *val);
+t_tetrimino			*get_tetrimino(int fd, t_tetrimino **lst, int *status);
 int					tetrivalue(char ***tetri, unsigned short *val);
 int					charvalidator(char	***tetri);
 int					tetri_shifter(char ***tetri);
@@ -54,11 +53,10 @@ int					shiftable_up(char ***tetri);
 unsigned short		tetri_validator(unsigned short n);
 unsigned short		tetri_validator2(unsigned short n);
 int					readfromfile(int fd, char ***tetri, int readn);
-t_tetrimino			*parser(char *filename);
+t_tetrimino			*parsero(char *filename);
 int					check_new_line(int fd, char **line, \
 					t_tetrimino **lst, int tetri);
-void				ft_lst_add_tail(t_tetrimino **lst, char ***ntetri, \
-					unsigned short v);
+void				ft_lst_add_tail(t_tetrimino **lst, t_tetrimino **new_tetri);
 t_tetrimino			*ft_remove_lst_head(t_tetrimino **lst);
 void				ft_empty_lst(t_tetrimino **lst);
 void				print_tetr(char ***tetri, int size);
@@ -75,5 +73,6 @@ int					place_tetrimino(t_map *map, t_tetrimino **lst, \
 					int coords[2], int letter);
 int					get_width(unsigned short val);
 int					get_height(unsigned short val);
+t_tetrimino			*new_tetrimino(char ***ntetri, unsigned short v);
 
 #endif

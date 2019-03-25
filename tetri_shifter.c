@@ -6,7 +6,7 @@
 /*   By: apasos-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 15:46:51 by apasos-g          #+#    #+#             */
-/*   Updated: 2019/03/08 11:09:15 by apasos-g         ###   ########.fr       */
+/*   Updated: 2019/03/24 22:32:21 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,14 @@ int		shiftable_left(char ***tetri)
 
 void	shift_up(char ***tetri)
 {
+	char *s;
+
+	s = (*tetri)[0];
 	(*tetri)[0] = (*tetri)[1];
 	(*tetri)[1] = (*tetri)[2];
 	(*tetri)[2] = (*tetri)[3];
 	(*tetri)[3] = ft_strdup("....");
+	free(s);
 }
 
 void	shift_left(char ***tetri)

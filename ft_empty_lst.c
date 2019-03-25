@@ -6,7 +6,7 @@
 /*   By: apasos-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 23:55:07 by apasos-g          #+#    #+#             */
-/*   Updated: 2019/03/13 12:05:13 by apasos-g         ###   ########.fr       */
+/*   Updated: 2019/03/24 22:10:17 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,7 @@ void	ft_empty_lst(t_tetrimino **lst)
 		free(cur);
 		cur = nxt;
 	}
+	cur = NULL;
+	nxt = NULL;
+	*lst = NULL;
 }

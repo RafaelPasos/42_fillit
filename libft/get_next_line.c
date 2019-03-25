@@ -6,118 +6,60 @@
 /*   By: apasos-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 19:11:41 by apasos-g          #+#    #+#             */
-/*   Updated: 2019/03/06 16:40:56 by apasos-g         ###   ########.fr       */
+/*   Updated: 2019/03/23 21:06:39 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*getdaline(char **rem, char **buffers)
+int		get_line(int fd, char **gl, char **line)
 {
-	char	*line;
-	char	*ptr;
+	char	*temp;
 	char	*str;
 
-	str = ft_strdup(*rem);
-	ptr = ft_strchr(str, '\n');
-	*ptr = '\0';
-	line = ft_strdup(str);
-	ptr++;
-	if (*ptr != '\0')
-		*buffers = ft_strdup(ptr);
+	str = ft_strdup(gl[fd]);
+	free(gl[fd]);
+	gl[fd] = NULL;
+	if ((temp = ft_strchr(str, '\n')))
+	{
+		*temp = '\0';
+		*line = ft_strdup(str);
+		temp++;
+		if (*temp != '\0')
+			gl[fd] = ft_strdup(temp);
+	}
+	else
+		*line = ft_strdup(str);
 	free(str);
-	return (line);
-}
-
-void	reading(char **rem, int fd)
-{
-	char	bf[BUFF_SIZE + 1];
-	char	*temp;
-	int		readn;
-
-	ft_bzero(bf, BUFF_SIZE);
-	readn = BUFF_SIZE;
-	while ((!(ft_strchr(*rem, '\n'))) && readn > 0)
-	{
-		readn = read(fd, bf, BUFF_SIZE);
-		bf[readn] = '\0';
-		temp = *rem;
-		*rem = ft_strjoin(*rem, bf);
-		free(temp);
-	}
-	if (readn == 0 && (*rem)[0] == '\0')
-	{
-		free(*rem);
-		*rem = NULL;
-	}
-}
-
-void	readingone(char **rem, int fd)
-{
-	char	bf[BUFF_SIZE + 1];
-	char	*temp;
-	char	v;
-	int		readn;
-
-	ft_bzero(bf, BUFF_SIZE);
-	readn = BUFF_SIZE;
-	v = '.';
-	while ((v != '\n') && readn == BUFF_SIZE)
-	{
-		readn = read(fd, bf, BUFF_SIZE);
-		bf[readn] = '\0';
-		v = bf[0];
-		temp = *rem;
-		*rem = ft_strjoin(*rem, bf);
-		free(temp);
-	}
-	if (readn == 0 && (*rem)[0] == '\0')
-	{
-		free(*rem);
-		*rem = NULL;
-	}
-}
-
-int		readfile(char **rem, char **line, char **buffers, int fd)
-{
-	if (BUFF_SIZE == 1)
-		readingone(rem, fd);
-	else
-		reading(rem, fd);
-	if (*rem == NULL)
-		return (0);
-	if (ft_strchr(*rem, '\n'))
-		*line = getdaline(rem, buffers);
-	else
-		*line = ft_strdup(*rem);
-	free(*rem);
+	str = NULL;
 	return (1);
 }
 
-int		get_next_line(int fd, char **line)
+int		get_next_line(const int fd, char **line)
 {
-	static char		*buffers[FILES_LIM];
-	char			test[1];
-	char			*rem;
+	static char		*gl[FILES_LIM];
+	char			buff[BUFF_SIZE + 1];
+	char			*temp;
+	int				rnum;
+	char			v;
 
-	if (read(fd, test, 0) < 0 || line == NULL || BUFF_SIZE < 1)
+	if (line == NULL || fd < 0 || read(fd, buff, 0))
 		return (-1);
-	if ((buffers[fd] != NULL) && (ft_strchr(buffers[fd], '\n')))
+	while ((rnum = read(fd, buff, BUFF_SIZE)) > 0)
 	{
-		rem = ft_strdup(buffers[fd]);
-		free(buffers[fd]);
-		buffers[fd] = NULL;
-		*line = getdaline(&rem, &buffers[fd]);
-		free(rem);
-		return (1);
+		buff[rnum] = '\0';
+		if (gl[fd] == NULL)
+			gl[fd] = ft_strnew(1);
+		temp = ft_strjoin(gl[fd], buff);
+		v = buff[0];
+		free(gl[fd]);
+		gl[fd] = temp;
+		if (BUFF_SIZE == 1 && v != '\n')
+			continue ;
+		if (ft_strchr(gl[fd], '\n'))
+			break ;
 	}
-	if (buffers[fd] == NULL)
-		rem = ft_strdup("");
-	else
-	{
-		rem = ft_strdup(buffers[fd]);
-		free(buffers[fd]);
-		buffers[fd] = NULL;
-	}
-	return (readfile(&rem, line, &buffers[fd], fd));
+	if (rnum == 0 && gl[fd] == NULL)
+		return (0);
+	return (get_line(fd, gl, line));
 }

@@ -6,7 +6,7 @@
 #    By: apasos-g <apasos-g@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/12 19:58:06 by apasos-g          #+#    #+#              #
-#    Updated: 2019/03/23 02:48:59 by apasos-g         ###   ########.fr        #
+#    Updated: 2019/03/24 21:47:03 by apasos-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ SOURCES =	get_tetrimino.c\
 			solver.c\
 			place_tetrimino.c\
 			get_tetri_dimensions.c\
-			parser.c
+			new_tetrimino.c\
+			parsero.c
 
 OBJECT = $(SOURCES:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: apasos-g <apasos-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 15:36:29 by apasos-g          #+#    #+#             */
-/*   Updated: 2019/03/06 22:24:25 by apasos-g         ###   ########.fr       */
+/*   Updated: 2019/03/24 22:41:02 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,6 @@ void				ft_lstsetelement(t_list **alst, size_t i,
 char				*ft_strndup(char *src, size_t len);
 void				ft_free2darray(char ***array, size_t col);
 int					get_next_line(const int fd, char **line);
-int					readfile(char **rem, char **line, char **buffers, int fd);
-void				readingone(char **rem, int fd);
-void				reading(char **rem, int fd);
-char				*getdaline(char **rem, char **buffers);
+int					get_line(int fd, char **gl, char **line);
 
 #endif

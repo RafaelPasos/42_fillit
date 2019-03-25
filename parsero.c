@@ -1,41 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grid_builder.c                                     :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apasos-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/21 06:27:45 by apasos-g          #+#    #+#             */
-/*   Updated: 2019/03/23 21:24:26 by apasos-g         ###   ########.fr       */
+/*   Created: 2019/02/27 21:13:03 by apasos-g          #+#    #+#             */
+/*   Updated: 2019/03/24 22:18:46 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	**grid_builder(int size)
+t_tetrimino	*parsero(char *filename)
 {
-	char	**grid;
-	int		i;
-	int		k;
+	int				fd;
+	t_tetrimino		*lst;
+	t_tetrimino		*toadd;
+	int				status;
 
-	i = 0;
-	if (!(grid = (char **)malloc(sizeof(char *) * (size))))
-		return (NULL);
-	while (i < size)
+	fd = open(filename, O_RDONLY);
+	status = 0;
+	lst = NULL;
+	toadd = NULL;
+	while ((toadd = get_tetrimino(fd, &lst, &status)))
 	{
-		if (!(grid[i] = (char *)malloc(sizeof(char) * (size + 1))))
-		{
-			ft_free2darray(&grid, i);
-			return (NULL);
-		}
-		k = 0;
-		while (k < size)
-		{
-			grid[i][k] = '.';
-			k++;
-		}
-		grid[i][k] = '\0';
-		i++;
+		ft_lst_add_tail(&lst, &toadd);
+		toadd = NULL;
 	}
-	return (grid);
+	if (status == -1)
+		ft_empty_lst(&lst);
+	return (lst);
 }

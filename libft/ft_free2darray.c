@@ -6,7 +6,7 @@
 /*   By: apasos-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 05:25:25 by apasos-g          #+#    #+#             */
-/*   Updated: 2019/03/12 05:43:36 by apasos-g         ###   ########.fr       */
+/*   Updated: 2019/03/24 19:00:22 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,10 @@ void	ft_free2darray(char ***array, size_t col)
 	i = 0;
 	while (i < col)
 	{
-		if ((*array)[i])
-		{
-			free((*array)[i]);
-			i++;
-		}
-		else
-			break ;
+		//free((*array)[i]);
+		ft_strdel(&((*array)[i]));
+		i++;
 	}
 	free(*array);
+	//ft_strdel(*array);
 }

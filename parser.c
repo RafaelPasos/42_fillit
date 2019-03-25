@@ -6,7 +6,7 @@
 /*   By: apasos-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 21:13:03 by apasos-g          #+#    #+#             */
-/*   Updated: 2019/03/21 20:23:33 by apasos-g         ###   ########.fr       */
+/*   Updated: 2019/03/24 18:58:44 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ t_tetrimino	*parser(char *filename)
 		else
 		{
 			ft_lst_add_tail(&lst, &tetrimin, value);
+			ft_free2darray(&tetrimin, 0);
 		}
 	}
 	return (lst);

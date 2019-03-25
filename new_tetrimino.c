@@ -1,41 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grid_builder.c                                     :+:      :+:    :+:   */
+/*   new_tetrimino.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apasos-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/21 06:27:45 by apasos-g          #+#    #+#             */
-/*   Updated: 2019/03/23 21:24:26 by apasos-g         ###   ########.fr       */
+/*   Created: 2019/03/24 21:12:16 by apasos-g          #+#    #+#             */
+/*   Updated: 2019/03/24 21:54:50 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	**grid_builder(int size)
+t_tetrimino	*new_tetrimino(char ***ntetri, unsigned short v)
 {
-	char	**grid;
-	int		i;
-	int		k;
+	t_tetrimino	*new_tetri;
+	int			i;
 
+	new_tetri = (t_tetrimino *)malloc(sizeof(t_tetrimino));
+	new_tetri->shape = (char **)malloc(sizeof(char *) * 4);
 	i = 0;
-	if (!(grid = (char **)malloc(sizeof(char *) * (size))))
-		return (NULL);
-	while (i < size)
+	while (i < 4)
 	{
-		if (!(grid[i] = (char *)malloc(sizeof(char) * (size + 1))))
-		{
-			ft_free2darray(&grid, i);
-			return (NULL);
-		}
-		k = 0;
-		while (k < size)
-		{
-			grid[i][k] = '.';
-			k++;
-		}
-		grid[i][k] = '\0';
+		(new_tetri->shape)[i] = ft_strdup((*ntetri)[i]);
 		i++;
 	}
-	return (grid);
+	new_tetri->val = v;
+	new_tetri->height = get_height(v);
+	new_tetri->width = get_width(v);
+	new_tetri->next = NULL;
+	return (new_tetri);
 }
