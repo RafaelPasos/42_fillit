@@ -1,42 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apasos-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/11 02:07:59 by apasos-g          #+#    #+#             */
-/*   Updated: 2018/12/21 05:47:52 by apasos-g         ###   ########.fr       */
+/*   Created: 2018/12/06 17:51:32 by apasos-g          #+#    #+#             */
+/*   Updated: 2019/03/27 19:58:51 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fillit.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	char	*str;
-	int		i;
-	int		j;
-	int		it;
+	int i;
 
 	i = 0;
-	j = 0;
-	it = 0;
-	if (!(s1 && s2))
-		return (NULL);
 	while (s1[i])
+	{
+		if (s2[i] == '\0')
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		if (s1[i] > s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		if (s1[i] < s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 		i++;
-	while (s2[j])
-		j++;
-	i = i + j;
-	if (!(str = (char *)malloc(sizeof(char) * (i + 1))))
-		return (NULL);
-	j = -1;
-	while (s1[++j])
-		str[it++] = s1[j];
-	j = -1;
-	while (s2[++j])
-		str[it++] = s2[j];
-	str[it] = '\0';
-	return (str);
+	}
+	if (s2[i] != '\0')
+		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	return (0);
 }

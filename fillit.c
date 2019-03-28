@@ -6,7 +6,7 @@
 /*   By: apasos-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 21:57:57 by apasos-g          #+#    #+#             */
-/*   Updated: 2019/03/24 22:20:19 by apasos-g         ###   ########.fr       */
+/*   Updated: 2019/03/27 20:03:28 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,19 @@ int	main(int argc, char **argv)
 {
 	t_tetrimino	*lst;
 
-	//lst = NULL;
+	lst = NULL;
 	if (argc != 2)
 	{
-		printf("usage: ./fillit [filename]\n");
+		write(1, "usage: ./fillit [filename]\n", 27);
 		return (0);
 	}
 	lst = parsero(argv[1]);
 	if (lst != NULL)
 	{
 		solver(&lst);
-		//ft_empty_lst(&lst);
+		ft_empty_lst(&lst);
 	}
 	else
-		printf("error\n");
-	system("leaks fillit");
+		write(1, "error\n", 7);
 	return (0);
 }

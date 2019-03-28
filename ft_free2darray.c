@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_free2darray.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apasos-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/05 19:06:20 by apasos-g          #+#    #+#             */
-/*   Updated: 2018/12/12 15:43:56 by apasos-g         ###   ########.fr       */
+/*   Created: 2018/12/28 05:25:25 by apasos-g          #+#    #+#             */
+/*   Updated: 2019/03/27 19:58:24 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fillit.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+void	ft_free2darray(char ***array, size_t col)
 {
 	size_t i;
 
 	i = 0;
-	while ((src[i]) && (i < len))
+	while (i < col)
 	{
-		dst[i] = src[i];
+		ft_strdel(&((*array)[i]));
 		i++;
 	}
-	while (i < len)
-	{
-		dst[i] = '\0';
-		i++;
-	}
-	return (dst);
+	free(*array);
+	ft_strdel(*array);
 }

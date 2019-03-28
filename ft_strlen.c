@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strequ.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apasos-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/11 00:39:33 by apasos-g          #+#    #+#             */
-/*   Updated: 2018/12/21 05:43:50 by apasos-g         ###   ########.fr       */
+/*   Created: 2018/12/05 16:04:52 by apasos-g          #+#    #+#             */
+/*   Updated: 2019/03/27 20:00:27 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fillit.h"
 
-int	ft_strequ(char const *s1, char const *s2)
+size_t	ft_strlen(const char *s)
 {
-	int i;
+	size_t length;
 
-	i = 0;
-	if (s1 && s2)
+	length = 0;
+	while (s[length] != '\0')
 	{
-		while (s1[i])
-		{
-			if (s2[i] == '\0')
-				return (0);
-			if (s1[i] > s2[i])
-				return (0);
-			if (s1[i] < s2[i])
-				return (0);
-			i++;
-		}
-		if (s2[i] != '\0')
-			return (0);
-		return (1);
+		length++;
 	}
-	return (0);
+	return (length);
 }

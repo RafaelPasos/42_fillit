@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apasos-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/12 01:26:22 by apasos-g          #+#    #+#             */
-/*   Updated: 2018/12/19 05:22:26 by apasos-g         ###   ########.fr       */
+/*   Created: 2018/12/11 00:01:59 by apasos-g          #+#    #+#             */
+/*   Updated: 2019/03/27 20:00:01 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fillit.h"
 
-void	ft_putnbr_fd(int nbr, int fd)
+void	ft_strdel(char **as)
 {
-	char c;
-
-	if (nbr == -2147483648)
-		write(fd, "-2147483648", 11);
-	else
+	if (as)
 	{
-		if (nbr < 0)
-		{
-			write(fd, "-", 1);
-			nbr = (nbr * -1);
-		}
-		if (nbr > 9)
-		{
-			ft_putnbr_fd((nbr / 10), fd);
-			nbr = nbr % 10;
-		}
-		c = nbr + '0';
-		write(fd, &c, 1);
+		free(*as);
+		*as = NULL;
 	}
 }

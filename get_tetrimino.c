@@ -6,7 +6,7 @@
 /*   By: raramos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 02:55:49 by raramos           #+#    #+#             */
-/*   Updated: 2019/03/24 22:50:04 by raramos          ###   ########.fr       */
+/*   Updated: 2019/03/27 19:20:17 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int			tetrivalue(char ***tetri, unsigned short *val)
 	return (1);
 }
 
-int			readfromfile(int fd, char ***tetri, int readn)
+int			tetrireadfromfile(int fd, char ***tetri, int readn)
 {
 	int		i;
 
@@ -106,41 +106,10 @@ int			check_new_line(int fd, char **line, t_tetrimino **lst, int tetri)
 		free(*line);
 		tetri = get_next_line(fd, line);
 		if (tetri != 1)
-		{
 			return (-1);
-		}
 	}
 	return (1);
 }
-
-/*
-int		get_tetrimino(int fd, char ***tetrimin, t_tetrimino **lst, \
-		unsigned short *val)
-{
-	int		tetri;
-	char	**tetrivalid;
-	char	*line;
-
-	tetri = 0;
-	tetri = check_new_line(fd, &line, lst, tetri);
-	if (tetri != 1)
-		return (tetri);
-	tetrivalid = (char **)malloc(sizeof(char *) * 5);
-	tetrivalid[0] = line;
-	tetrivalid[4] = NULL;
-	tetri = readfromfile(fd, &tetrivalid, tetri);
-	if (tetri == -1 || tetri == 0)
-		return (tetri);
-	tetri = tetrivalue(&tetrivalid, val);
-	if (tetri != 1)
-	{
-		ft_free2darray(&tetrivalid, 4);
-		return (tetri);
-	}
-	*tetrimin = tetrivalid;
-	return (tetri);
-}
-*/
 
 t_tetrimino	*get_tetrimino(int fd, t_tetrimino **lst, int *status)
 {
@@ -155,7 +124,7 @@ t_tetrimino	*get_tetrimino(int fd, t_tetrimino **lst, int *status)
 		return (NULL);
 	tetrimin = (char **)malloc(sizeof(char *) * 4);
 	tetrimin[0] = line;
-	*status = readfromfile(fd, &tetrimin, *status);
+	*status = tetrireadfromfile(fd, &tetrimin, *status);
 	if (*status == -1 || *status == 0)
 		return (NULL);
 	*status = tetrivalue(&tetrimin, &val);

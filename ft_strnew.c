@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apasos-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/12 01:07:22 by apasos-g          #+#    #+#             */
-/*   Updated: 2018/12/12 15:40:37 by apasos-g         ###   ########.fr       */
+/*   Created: 2018/12/10 23:44:20 by apasos-g          #+#    #+#             */
+/*   Updated: 2019/03/27 19:59:46 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fillit.h"
 
-void	ft_putnbr(int nbr)
+char	*ft_strnew(size_t size)
 {
-	char c;
+	char	*str;
+	size_t	i;
 
-	if (nbr == -2147483648)
-		write(1, "-2147483648", 11);
-	else
+	i = 0;
+	if (!(str = (char *)malloc(sizeof(char) * (size + 1))))
+		return (NULL);
+	while (i < size)
 	{
-		if (nbr < 0)
-		{
-			write(1, "-", 1);
-			nbr = (nbr * -1);
-		}
-		if (nbr > 9)
-		{
-			ft_putnbr(nbr / 10);
-			nbr = nbr % 10;
-		}
-		c = nbr + '0';
-		write(1, &c, 1);
+		str[i] = '\0';
+		i++;
 	}
+	str[i] = '\0';
+	return (str);
 }

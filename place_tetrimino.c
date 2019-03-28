@@ -6,39 +6,15 @@
 /*   By: apasos-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 15:08:57 by apasos-g          #+#    #+#             */
-/*   Updated: 2019/03/23 16:05:45 by apasos-g         ###   ########.fr       */
+/*   Updated: 2019/03/27 19:13:03 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-unsigned short	power_of_2(unsigned short pow)
+void	place_fix(t_map *mapa, t_tetrimino **lst, \
+				t_point p)
 {
-	int res;
-
-	res = 1;
-	while (pow)
-	{
-		res = res * 2;
-		pow--;
-	}
-	return (res);
-}
-
-void			place_it(t_map *mapa, t_tetrimino **lst, \
-				int coords[2], int letter)
-{
-	/*
-	unsigned short i;
-
-	i = 0;
-	while (i < 16)
-	{
-		if (lst->val & power_of_2(i))
-			mapa->map[coords[0] + (i / 4)][coords[1] + (i % 4)] = 'A' + letter;
-		i++;
-	}
-	*/
 	int i;
 	int k;
 
@@ -50,70 +26,58 @@ void			place_it(t_map *mapa, t_tetrimino **lst, \
 		while (k < 4)
 		{
 			if ((*lst)->shape[i][k] == '#')
-				mapa->map[coords[1] + i][coords[0] + k] = 'A' + letter;
+				mapa->map[p.height + i][p.width + k] = '.';
 			k++;
 		}
 		i++;
 	}
 }
 
-int				place_tetrimino(t_map *mapa, t_tetrimino **lst, \
-				int coords[2], int letter)
+void	place_it(t_map *mapa, t_tetrimino **lst, \
+				t_point p, int letter)
 {
-	//unsigned short	i;
-	//unsigned short	tetrval;
-	int				i;
-	int				k;
-	int				size;
-	int				freespots;
-	t_tetrimino		*te;
+	int i;
+	int k;
 
-	size = 0;
 	i = 0;
-	te = *lst;
-	//tetrval = lst->val;
-	//while (mapa->map[size])
-		//size++;
-	//size = mapa->size;
-	//size--;
-	//E WE, CHECA COMO SE CALCULA EL SIZE Y CUANDO SE HACE EL MAPA MAS GRANDE
-	//size = mapa->size;
-	if (mapa->size - coords[1] < (te->height) || \
-			mapa->size - coords[0] < (te->width))
+	k = 0;
+	while (i < 4)
 	{
-		//printf("fuck placing tetrimino %d up with coords: %d, %d\n", letter + 1, coords[0], coords[1]);
-		return (0);
-	}
-	freespots = 0;
-	/*
-	//printf("chequemos si se puede acomodar el las coord\n");
-	 while (i < 16)
-	{
-		if (freespots < 4 && tetrval & power_of_2(i))
+		k = 0;
+		while (k < 4)
 		{
-			//printf("se mama esta madre: %d\n", tetrval & power_of_2(i));
-			if (mapa->map[coords[0] + (i / 4)][coords[1] + (i % 4)] == '.')
-			{
-				freespots++;
-			}
-			//printf("no seg fault\n");
+			if ((*lst)->shape[i][k] == '#')
+				mapa->map[p.height + i][p.width + k] = 'A' + letter;
+			k++;
 		}
 		i++;
 	}
-	*/
-	i = -1;
-	while (++i < 4)
+}
+
+int		place_tetrimino(t_map *mapa, t_tetrimino **lst, \
+				t_point p, int letter)
+{
+	int	i;
+	int	k;
+	int	freespots;
+
+	if (mapa->size - p.height < ((*lst)->height) || \
+			mapa->size - p.width < ((*lst)->width))
+		return (0);
+	freespots = 0;
+	i = 0;
+	while (i < 4)
 	{
-		k = -1;
-		while (++k < 4)
-			if (te->shape[i][k] == '#' && \
-					mapa->map[coords[1] + i][coords[0] + k] == '.')
-				freespots++;
+		k = 0;
+		while (k < 4)
+		{
+			if ((*lst)->shape[i][k] == '#')
+				if (mapa->map[p.height + i][p.width + k] != '.')
+					return (0);
+			k++;
+		}
+		i++;
 	}
-	if (freespots == 4)
-	{
-		place_it(mapa, lst, coords, letter);
-		return (1);
-	}
-	return (0);
+	place_it(mapa, lst, p, letter);
+	return (1);
 }

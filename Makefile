@@ -6,19 +6,15 @@
 #    By: apasos-g <apasos-g@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/12 19:58:06 by apasos-g          #+#    #+#              #
-#    Updated: 2019/03/24 21:47:03 by apasos-g         ###   ########.fr        #
+#    Updated: 2019/03/27 19:56:05 by apasos-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
+NAME		= fillit
+CC			= gcc
+CFLAGS		= -Wall -Werror -Wextra
 
-FLAGS = -Wall -Wextra -Werror -g -I libft/
-
-NAME = fillit.a
-
-DO	= fillit
-
-SOURCES =	get_tetrimino.c\
+SRC =	get_tetrimino.c\
 			tetri_shifter.c\
 			tetri_validator.c\
 			ft_lst_add_tail.c\
@@ -32,22 +28,31 @@ SOURCES =	get_tetrimino.c\
 			place_tetrimino.c\
 			get_tetri_dimensions.c\
 			new_tetrimino.c\
-			parsero.c
+			parsero.c\
+			ft_free2darray.c\
+			ft_memdel.c\
+			ft_strcmp.c\
+			ft_strdup.c\
+			get_next_line.c\
+			ft_strchr.c\
+			ft_strnew.c\
+			ft_strdel.c\
+			ft_strjoin.c\
+			ft_strlen.c\
+			fillit.c
 
-OBJECT = $(SOURCES:.c=.o)
-
-$(NAME):
-	@$(CC) $(FLAGS) -c $(SOURCES)
-	@ar rcs $(NAME) $(OBJECT)
-	@gcc -g -o $(DO) fillit.c fillit.a libft/libft.a
+OBJ			= $(SRC:%.c=%.o)
 
 all: $(NAME)
 
+$(NAME):
+	@$(CC) $(CFLAGS) -c $(SRC)
+	@$(CC) -g $(CFLAGS) $(OBJ) -o $(NAME)
+
 clean:
-	@rm -rf $(OBJECT)
+	@rm -f $(OBJ)
 
 fclean: clean
-	@rm -fr $(NAME)
-	@rm	$(DO)
+	@rm -f $(NAME)
 
 re: fclean all

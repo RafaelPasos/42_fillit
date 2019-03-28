@@ -6,7 +6,7 @@
 /*   By: apasos-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 19:23:10 by apasos-g          #+#    #+#             */
-/*   Updated: 2019/03/11 07:39:15 by apasos-g         ###   ########.fr       */
+/*   Updated: 2019/03/25 20:52:20 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ unsigned short	tetri_validator(unsigned short n)
 		return (1);
 	if (n == 71)
 		return (1);
-	if (n == 232)
+	if (n == 116)
 		return (1);
 	if (n == 802)
 		return (1);

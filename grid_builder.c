@@ -6,7 +6,7 @@
 /*   By: apasos-g <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 06:27:45 by apasos-g          #+#    #+#             */
-/*   Updated: 2019/03/23 21:24:26 by apasos-g         ###   ########.fr       */
+/*   Updated: 2019/03/25 22:28:31 by apasos-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ char	**grid_builder(int size)
 	int		k;
 
 	i = 0;
-	if (!(grid = (char **)malloc(sizeof(char *) * (size))))
-		return (NULL);
+	if (!(grid = (char **)malloc(sizeof(char *) * size)))
+		return (0);
 	while (i < size)
 	{
 		if (!(grid[i] = (char *)malloc(sizeof(char) * (size + 1))))
 		{
 			ft_free2darray(&grid, i);
-			return (NULL);
+			return (0);
 		}
 		k = 0;
 		while (k < size)
